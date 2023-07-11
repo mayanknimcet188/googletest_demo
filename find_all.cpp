@@ -45,9 +45,8 @@ void find_all_test(std::string const &test_name, std::string const &text, std::p
     find_all(std::begin(test_input.first), std::end(test_input.second), std::back_inserter(matches), [](int i)
              { return i == 5; });
     std::vector<int> matchIndexes;
-    auto getIndexes = [&matches, &test_input, &matchIndexes]()
-    { for(auto it : matches) { matchIndexes.push_back(it - std::cbegin(test_input.first)); } };
-    getIndexes();
+    [&matches, &test_input, &matchIndexes]()
+    { for(auto it : matches) { matchIndexes.push_back(it - std::cbegin(test_input.first)); } }();
     if (matchIndexes == test_input.second)
     {
         std::cout << "Success\n";
